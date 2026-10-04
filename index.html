@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sonora — Music Player</title>
+
+    <meta
+        name="description"
+        content="Sonora is a modern responsive JavaScript music player created for CodeAlpha Task 4."
+    >
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- Decorative background -->
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+    <div class="background-shape shape-three"></div>
+
+    <main class="app">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div class="brand">
+                <div class="brand-icon">♫</div>
+
+                <div>
+                    <h1>sonora</h1>
+                    <span>your little music space</span>
+                </div>
+            </div>
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-button"
+                    id="themeButton"
+                    title="Change atmosphere"
+                    type="button"
+                >
+                    ✦
+                </button>
+
+                <button
+                    class="icon-button"
+                    id="favoriteButton"
+                    title="Favorite"
+                    type="button"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- SEARCH -->
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search your music..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN PLAYER AREA -->
+        <section class="hero-player">
+
+            <!-- LEFT: ALBUM -->
+            <div class="album-area">
+
+                <div class="album-shadow"></div>
+
+                <img
+                    id="mainCover"
+                    class="main-cover"
+                    src="./assets/images/cover-1.jpg"
+                    alt="Album cover"
+                >
+
+                <div class="vinyl-ring"></div>
+
+            </div>
+
+
+            <!-- RIGHT: INFORMATION -->
+            <div class="player-information">
+
+                <span class="eyebrow">NOW PLAYING</span>
+
+                <h2 id="songTitle">
+                    Loading music...
+                </h2>
+
+                <p id="songArtist">
+                    Your music collection
+                </p>
+
+                <div class="mood">
+                    <span></span>
+                    <span id="songMood">Feel the sound</span>
+                </div>
+
+
+                <!-- PROGRESS -->
+                <div class="progress-container">
+
+                    <span id="currentTime">
+                        0:00
+                    </span>
+
+                    <input
+                        type="range"
+                        id="progressBar"
+                        min="0"
+                        max="100"
+                        value="0"
+                    >
+
+                    <span id="duration">
+                        0:00
+                    </span>
+
+                </div>
+
+
+                <!-- CONTROLS -->
+                <div class="main-controls">
+
+                    <button
+                        id="shuffleButton"
+                        class="small-control"
+                        type="button"
+                        title="Shuffle"
+                    >
+                        ⤨
+                    </button>
+
+                    <button
+                        id="previousButton"
+                        class="small-control"
+                        type="button"
+                        title="Previous"
+                    >
+                        |◀
+                    </button>
+
+                    <button
+                        id="playButton"
+                        class="play-button"
+                        type="button"
+                        title="Play"
+                    >
+                        ▶
+                    </button>
+
+                    <button
+                        id="nextButton"
+                        class="small-control"
+                        type="button"
+                        title="Next"
+                    >
+                        ▶|
+                    </button>
+
+                    <button
+                        id="repeatButton"
+                        class="small-control"
+                        type="button"
+                        title="Repeat"
+                    >
+                        ↻
+                    </button>
+
+                </div>
+
+
+                <!-- VOLUME -->
+                <div class="volume-row">
+
+                    <span id="volumeIcon">
+                        🔊
+                    </span>
+
+                    <input
+                        type="range"
+                        id="volumeBar"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="0.8"
+                    >
+
+                    <span id="volumeValue">
+                        80%
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PLAYLIST -->
+        <section class="playlist-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">
+                        YOUR COLLECTION
+                    </span>
+
+                    <h3>
+                        Pick something beautiful
+                    </h3>
+                </div>
+
+                <span id="trackCount">
+                    4 tracks
+                </span>
+
+            </div>
+
+
+            <div
+                class="playlist"
+                id="playlist"
+            ></div>
+
+        </section>
+
+
+        <!-- MINI FOOTER -->
+        <footer>
+
+            <div>
+                <strong>SONORA</strong>
+                <span> • CodeAlpha Task 4</span>
+            </div>
+
+            <span>
+                Built with HTML • CSS • JavaScript
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    <!-- AUDIO -->
+    <audio
+        id="audioPlayer"
+        preload="metadata"
+    ></audio>
+
+
+    <!-- TOAST -->
+    <div
+        id="toast"
+        class="toast"
+    >
+        Ready to play
+    </div>
+
+
+    <script src="./script.js"></script>
+
+</body>
+</html>
