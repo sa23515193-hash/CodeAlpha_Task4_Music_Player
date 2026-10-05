@@ -1,319 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Sonora — Music Player</title>
-  <meta name="description" content="Sonora modern responsive JavaScript music player">
+  <meta
+    name="description"
+    content="A modern responsive music player built with HTML, CSS and JavaScript."
+  />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
-  <div class="ambient ambient-three"></div>
+  <!-- Background decoration -->
+  <div class="bg-orb orb-one"></div>
+  <div class="bg-orb orb-two"></div>
 
+  <!-- Top Navigation -->
   <header class="topbar">
-
-    <a href="#" class="brand">
-      <span class="brand-icon">♫</span>
-      <span>
-        <strong>SONORA</strong>
-        <small>Music Studio</small>
-      </span>
+    <a href="#" class="brand" id="brandHome">
+      <span class="brand-mark">S</span>
+      <span>SONORA</span>
     </a>
 
-    <div class="header-actions">
+    <div class="top-actions">
+      <div class="search-box">
+        <span>⌕</span>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search songs..."
+          autocomplete="off"
+        />
+        <kbd>/</kbd>
+      </div>
 
-      <button class="icon-btn" id="themeBtn" title="Change theme">
-        <span id="themeIcon">☀</span>
+      <button
+        class="icon-btn"
+        id="themeBtn"
+        type="button"
+        aria-label="Toggle theme"
+        title="Toggle theme"
+      >
+        ☼
       </button>
-
-      <button class="icon-btn" id="queueBtn" title="Open queue">
-        ☷
-      </button>
-
-      <button class="profile-btn">
-        <span>SI</span>
-      </button>
-
     </div>
-
   </header>
 
-  <main class="app">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+  <!-- Main -->
+  <main class="main-container">
 
-      <div class="nav-title">DISCOVER</div>
+    <!-- Hero Player -->
+    <section class="hero">
 
-      <button class="nav-item active" data-view="all">
-        <span>◉</span>
-        All Music
-      </button>
+      <div class="art-area">
 
-      <button class="nav-item" data-view="favorites">
-        <span>♡</span>
-        Favorites
-        <b id="favoriteCount">0</b>
-      </button>
+        <div class="art-shadow"></div>
 
-      <button class="nav-item" data-view="recent">
-        <span>◷</span>
-        Recently Played
-      </button>
-
-      <div class="nav-title">YOUR MUSIC</div>
-
-      <button class="nav-item" id="shuffleNav">
-        <span>⤨</span>
-        Shuffle Play
-      </button>
-
-      <button class="nav-item" id="sleepNav">
-        <span>◴</span>
-        Sleep Timer
-      </button>
-
-      <div class="sidebar-bottom">
-        <div class="mini-tip">
-          <span>⌨</span>
-          <div>
-            <strong>Keyboard controls</strong>
-            <small>Space · ← · →</small>
-          </div>
-        </div>
-      </div>
-
-    </aside>
-
-    <!-- CONTENT -->
-    <section class="content">
-
-      <div class="content-head">
-
-        <div>
-          <p class="eyebrow">YOUR PERSONAL SOUNDTRACK</p>
-          <h1 id="pageTitle">All Music</h1>
-        </div>
-
-        <div class="search-box">
-          <span>⌕</span>
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search songs or artists..."
-          >
-          <kbd>/</kbd>
-        </div>
-
-      </div>
-
-      <!-- FEATURED PLAYER -->
-      <section class="featured">
-
-        <div class="player-art-wrap">
-
-          <div class="art-glow"></div>
-
+        <div class="album-wrap" id="albumWrap">
           <img
             id="mainCover"
-            class="main-cover"
-            src="./assets/images/cover-1.jpg"
+            src="assets/images/cover-1.jpg"
             alt="Album cover"
-          >
+          />
+        </div>
 
-          <div class="visualizer" id="visualizer">
-            <i></i><i></i><i></i><i></i><i></i>
+        <div class="playing-bars" id="visualizer">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+      </div>
+
+
+      <div class="player-info">
+
+        <div class="eyebrow">
+          <span class="live-dot"></span>
+          NOW PLAYING
+        </div>
+
+        <div class="title-row">
+          <div>
+            <h1 id="songTitle">Golden Hour</h1>
+            <p id="artistName">Sonora Sessions</p>
           </div>
+
+          <button
+            class="favorite-btn"
+            id="favoriteBtn"
+            type="button"
+            aria-label="Add to favorites"
+          >
+            ♡
+          </button>
+        </div>
+
+        <p class="song-description" id="songDescription">
+          Warm & dreamy
+        </p>
+
+
+        <!-- Progress -->
+        <div class="progress-area">
+
+          <span id="currentTime">0:00</span>
+
+          <input
+            type="range"
+            id="progressBar"
+            min="0"
+            max="100"
+            value="0"
+            step="0.1"
+          />
+
+          <span id="duration">0:00</span>
 
         </div>
 
-        <div class="player-info">
 
-          <div class="song-top">
+        <!-- Controls -->
+        <div class="main-controls">
 
-            <div>
-              <span class="playing-label">NOW PLAYING</span>
-              <h2 id="songTitle">Golden Hour</h2>
-              <p id="songArtist">Sonora Sessions</p>
-            </div>
+          <button
+            class="control-btn small"
+            id="shuffleBtn"
+            type="button"
+            title="Shuffle"
+          >
+            ⤨
+          </button>
 
-            <button class="favorite-btn" id="favoriteBtn">
-              ♡
-            </button>
+          <button
+            class="control-btn"
+            id="prevBtn"
+            type="button"
+            title="Previous"
+          >
+            ⏮
+          </button>
 
-          </div>
+          <button
+            class="play-btn"
+            id="playBtn"
+            type="button"
+            aria-label="Play"
+          >
+            ▶
+          </button>
 
-          <div class="mood" id="songMood">
-            Warm & dreamy
-          </div>
+          <button
+            class="control-btn"
+            id="nextBtn"
+            type="button"
+            title="Next"
+          >
+            ⏭
+          </button>
 
-          <div class="progress-area">
+          <button
+            class="control-btn small"
+            id="repeatBtn"
+            type="button"
+            title="Repeat"
+          >
+            ↻
+          </button>
 
-            <span id="currentTime">0:00</span>
+        </div>
+
+
+        <!-- Bottom controls -->
+        <div class="utility-row">
+
+          <div class="volume-control">
+            <span id="volumeIcon">🔊</span>
 
             <input
               type="range"
-              id="progress"
+              id="volumeBar"
               min="0"
-              max="100"
-              value="0"
-            >
-
-            <span id="duration">0:00</span>
-
+              max="1"
+              value="0.8"
+              step="0.01"
+            />
           </div>
 
-          <div class="controls">
+          <div class="speed-control">
+            <label for="speedSelect">Speed</label>
 
-            <button id="shuffleBtn" class="control-btn" title="Shuffle">
-              ⤨
-            </button>
-
-            <button id="prevBtn" class="control-btn large">
-              ⏮
-            </button>
-
-            <button id="playBtn" class="play-btn">
-              ▶
-            </button>
-
-            <button id="nextBtn" class="control-btn large">
-              ⏭
-            </button>
-
-            <button id="repeatBtn" class="control-btn" title="Repeat">
-              ↻
-            </button>
-
-          </div>
-
-          <div class="player-tools">
-
-            <div class="volume">
-              <button id="muteBtn">🔊</button>
-              <input
-                type="range"
-                id="volume"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.8"
-              >
-            </div>
-
-            <select id="speedSelect" title="Playback speed">
+            <select id="speedSelect">
               <option value="0.75">0.75×</option>
               <option value="1" selected>1×</option>
               <option value="1.25">1.25×</option>
               <option value="1.5">1.5×</option>
               <option value="2">2×</option>
             </select>
-
-            <button id="sleepBtn" class="tool-btn">
-              ◴ Sleep
-            </button>
-
           </div>
 
         </div>
 
-      </section>
+      </div>
 
-      <!-- STATS -->
-      <section class="quick-stats">
+    </section>
 
-        <div class="stat-card">
-          <span class="stat-icon">♫</span>
-          <div>
-            <strong id="trackCount">4</strong>
-            <small>Tracks</small>
-          </div>
+
+    <!-- Collection -->
+    <section class="collection-section">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="section-label">COLLECTION</span>
+          <h2>Your Tracks</h2>
         </div>
 
-        <div class="stat-card">
-          <span class="stat-icon">♡</span>
-          <div>
-            <strong id="statFavorites">0</strong>
-            <small>Favorites</small>
-          </div>
-        </div>
+        <span class="track-count" id="trackCount">4 songs</span>
 
-        <div class="stat-card">
-          <span class="stat-icon">◷</span>
-          <div>
-            <strong id="recentCount">0</strong>
-            <small>Played</small>
-          </div>
-        </div>
+      </div>
 
-      </section>
 
-      <!-- SONG LIST -->
-      <section class="library">
+      <div class="track-list" id="trackList">
+        <!-- JavaScript inserts tracks here -->
+      </div>
 
-        <div class="section-heading">
-          <div>
-            <span class="eyebrow">COLLECTION</span>
-            <h3 id="libraryTitle">Your Tracks</h3>
-          </div>
 
-          <span id="resultCount">4 songs</span>
-        </div>
-
-        <div id="songList" class="song-list"></div>
-
-        <div id="emptyState" class="empty-state hidden">
-          <span>♫</span>
-          <h3>No music found</h3>
-          <p>Try another search or add songs to your collection.</p>
-        </div>
-
-      </section>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">♫</div>
+        <h3>No music found</h3>
+        <p>Try another search.</p>
+      </div>
 
     </section>
 
   </main>
 
-  <!-- QUEUE DRAWER -->
-  <aside class="queue-panel" id="queuePanel">
 
-    <div class="queue-header">
+  <!-- Floating Mini Player -->
+  <div class="mini-player" id="miniPlayer">
+
+    <div class="mini-song">
+
+      <img
+        id="miniCover"
+        src="assets/images/cover-1.jpg"
+        alt="Current song"
+      />
+
       <div>
-        <span class="eyebrow">UP NEXT</span>
-        <h2>Queue</h2>
+        <strong id="miniTitle">Golden Hour</strong>
+        <span id="miniArtist">Sonora Sessions</span>
       </div>
 
-      <button id="closeQueue">×</button>
     </div>
 
-    <div id="queueList" class="queue-list"></div>
 
-  </aside>
+    <div class="mini-center">
 
-  <div class="overlay" id="overlay"></div>
+      <button id="miniPrev" type="button">⏮</button>
 
-  <!-- TOAST -->
-  <div class="toast" id="toast"></div>
+      <button
+        class="mini-play"
+        id="miniPlay"
+        type="button"
+      >
+        ▶
+      </button>
 
+      <button id="miniNext" type="button">⏭</button>
+
+    </div>
+
+
+    <div class="mini-progress">
+      <div id="miniProgress"></div>
+    </div>
+
+  </div>
+
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span>✓</span>
+    <p id="toastText">Added to favorites</p>
+  </div>
+
+
+  <!-- Audio -->
   <audio id="audioPlayer" preload="metadata"></audio>
 
-  <footer>
-    <span>SONORA</span>
-    <span>CodeAlpha · Task 4</span>
-    <span>Built with HTML · CSS · JavaScript</span>
-  </footer>
 
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
